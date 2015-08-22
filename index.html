@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Socket.io Chat</title>
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+	
+	<style>
+		.messages {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+		
+		.messages li {
+			border-bottom: 1px solid #eee;
+			padding: 1em;
+		}
+		
+		.you {
+			text-align: right;
+		}
+		
+		.you::before{
+			content: 'you said: ';
+			color: #aaa;
+		}
+		
+		.them {
+			font-weight: bold;
+		}
+		
+		.them::before{
+			content: 'they said: ';
+			color: #aaa;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="container">
+		<div class="page-header">
+			<h1>Super simple Socket.io chat</h1>
+		</div>
+
+		<ul class="messages"></ul>
+
+		<form id="input-form" class="form-inline">
+			<input type="text" id="message" class="form-control">
+			<input type="submit" value="Send" class="btn btn-default">
+		</form>
+	</div>
+	
+	
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/socket.io-client/socket.io.js"></script>
+	<script>
+	
+		// connect to the socket.io server
+		var socket = io.connect('http://localhost:9999')
+		
+		// when we connect to the server...
+		socket.on('welcome', function(data) {
+			// log what they told us
+			console.log(data)
+		})
+		
+		// when we receive the message...
+		socket.on('receive-message', function(data) {
+			// put it into the list
+			if(data.sender !== socket.id){
+				$('.messages').append('<li class="them">' + data.body + '</li>');
+			}
+			
+		})
+		
+		$('#input-form').on('submit', function(event) {
+			// prevent the form from submitting
+			event.preventDefault()
+			
+			// capture the value in the input field
+			var message = $('#message').val()
+			
+			// emit the input value
+			socket.emit('send-message', {
+				sender: socket.id,
+				body: message
+			})
+			
+			// clear the input field
+			$('#message').val('')
+			
+			$('.messages').append('<li class="you">' + message + '</li>');
+		})
+		
+	
+	</script>
+</body>
+</html>
