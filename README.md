@@ -2,12 +2,14 @@
 
 A simple example of a socket.io chat app.
 
-To install
+### Install
 ```
 npm install
 ```
 
-To start
+### Usage
 ```
 npm start
 ```
+
+Once the server is running, open up `index.html` in multiple browser tabs
