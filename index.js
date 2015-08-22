@@ -8,7 +8,7 @@ io.on('connection', function(socket) {
 	// when we receive the message from the client
 	socket.on('send-message', function(data) {
 		// send it back out to everybody connected
-		io.emit('receive-message', data);
+		io.emit('receive-message', data)
 	})
 })
 

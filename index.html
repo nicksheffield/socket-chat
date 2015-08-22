@@ -69,7 +69,7 @@
 		socket.on('receive-message', function(data) {
 			// put it into the list
 			if(data.sender !== socket.id){
-				$('.messages').append('<li class="them">' + data.body + '</li>');
+				$('.messages').append('<li class="them">' + data.body + '</li>')
 			}
 			
 		})
@@ -90,7 +90,7 @@
 			// clear the input field
 			$('#message').val('')
 			
-			$('.messages').append('<li class="you">' + message + '</li>');
+			$('.messages').append('<li class="you">' + message + '</li>')
 		})
 		
 	
