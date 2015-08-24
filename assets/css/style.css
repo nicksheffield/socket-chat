@@ -1,0 +1,45 @@
+@keyframes appear {
+	0% {
+		transform: scale(0.5);
+		opacity: 0;
+	}
+	100% {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+.messages {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.messages li {
+	border-bottom: 1px solid #eee;
+	padding: 1em;
+}
+
+.messages span {
+	animation: appear 0.2s;
+}
+
+.you {
+	text-align: right;
+}
+
+.you span {
+	padding: 0.5em 1em;
+	border-radius: 10px;
+	background: #4CAF50;
+	display: inline-block;
+	color: #fff;
+}
+
+.them span {
+	padding: 0.5em 1em;
+	border-radius: 10px;
+	background: #2196F3;
+	display: inline-block;
+	color: #fff;
+}

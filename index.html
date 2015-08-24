@@ -4,53 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Socket.io Chat</title>
 	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-	
-	<style>
-	
-		@-webkit-keyframes appear {
-			0% {
-				transform: scale(0);
-			}
-			100% {
-				transform: scale(1);
-			}
-		}
-		
-		.messages {
-			list-style: none;
-			margin: 0;
-			padding: 0;
-		}
-		
-		.messages li {
-			border-bottom: 1px solid #eee;
-			padding: 1em;
-		}
-		
-		.messages span {
-			-webkit-animation: appear 0.2s;
-		}
-		
-		.you {
-			text-align: right;
-		}
-		
-		.you span {
-			padding: 0.5em 1em;
-			border-radius: 10px;
-			background: #4CAF50;
-			display: inline-block;
-			color: #fff;
-		}
-		
-		.them span {
-			padding: 0.5em 1em;
-			border-radius: 10px;
-			background: #2196F3;
-			display: inline-block;
-			color: #fff;
-		}
-	</style>
+	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
@@ -70,46 +24,6 @@
 	
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="bower_components/socket.io-client/socket.io.js"></script>
-	<script>
-	
-		// connect to the socket.io server
-		var socket = io.connect('http://localhost:9999')
-		
-		// when we connect to the server...
-		socket.on('welcome', function(data) {
-			// log what they told us
-			console.log(data)
-		})
-		
-		// when we receive the message...
-		socket.on('receive-message', function(data) {
-			// put it into the list
-			if(data.sender !== socket.id){
-				$('.messages').append('<li class="them"><span>' + data.body + '</span></li>')
-			}
-			
-		})
-		
-		$('#input-form').on('submit', function(event) {
-			// prevent the form from submitting
-			event.preventDefault()
-			
-			// capture the value in the input field
-			var message = $('#message').val()
-			
-			// emit the input value
-			socket.emit('send-message', {
-				sender: socket.id,
-				body: message
-			})
-			
-			// clear the input field
-			$('#message').val('')
-			
-			$('.messages').append('<li class="you"><span>' + message + '</span></li>')
-		})
-		
-	
-	</script>
+	<script src="assets/js/script.js"></script>
 </body>
 </html>
