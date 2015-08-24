@@ -6,6 +6,16 @@
 	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 	
 	<style>
+	
+		@-webkit-keyframes appear {
+			0% {
+				transform: scale(0);
+			}
+			100% {
+				transform: scale(1);
+			}
+		}
+		
 		.messages {
 			list-style: none;
 			margin: 0;
@@ -17,22 +27,28 @@
 			padding: 1em;
 		}
 		
+		.messages span {
+			-webkit-animation: appear 0.2s;
+		}
+		
 		.you {
 			text-align: right;
 		}
 		
-		.you::before{
-			content: 'you said: ';
-			color: #aaa;
+		.you span {
+			padding: 0.5em 1em;
+			border-radius: 10px;
+			background: #4CAF50;
+			display: inline-block;
+			color: #fff;
 		}
 		
-		.them {
-			font-weight: bold;
-		}
-		
-		.them::before{
-			content: 'they said: ';
-			color: #aaa;
+		.them span {
+			padding: 0.5em 1em;
+			border-radius: 10px;
+			background: #2196F3;
+			display: inline-block;
+			color: #fff;
 		}
 	</style>
 </head>
@@ -69,7 +85,7 @@
 		socket.on('receive-message', function(data) {
 			// put it into the list
 			if(data.sender !== socket.id){
-				$('.messages').append('<li class="them">' + data.body + '</li>')
+				$('.messages').append('<li class="them"><span>' + data.body + '</span></li>')
 			}
 			
 		})
@@ -90,7 +106,7 @@
 			// clear the input field
 			$('#message').val('')
 			
-			$('.messages').append('<li class="you">' + message + '</li>')
+			$('.messages').append('<li class="you"><span>' + message + '</span></li>')
 		})
 		
 	
