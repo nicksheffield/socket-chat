@@ -9,6 +9,37 @@
 	}
 }
 
+.legend {
+	display: flex;
+	align-items: center;
+	margin-bottom: 1em;
+}
+
+.legend p {
+	display: inline-block;
+	padding: 0.2em 0.4em;
+	margin: 0 0.5em;
+	border: 1px solid #eee;
+	border-radius: 5px;
+}
+
+.dot {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: #000;
+	margin-right: 0.5em;
+}
+
+.dot.you {
+	background: #4CAF50;
+}
+
+.dot.them {
+	background: #2196F3;
+}
+
 .messages {
 	list-style: none;
 	margin: 0;
